@@ -18,36 +18,60 @@
     >
     <form>
         <div class="row">
-            <x-adminlte-input name="first_name" label="Firstname" placeholder="First Name"
-                fgroup-class="col-md-6" disable-feedback/>
+            <x-adminlte-input name="passport_number" label="Passport Number" placeholder="Passport Number"
+                fgroup-class="col-md-4" disable-feedback/>
+                <x-adminlte-input name="first_name" label="Firstname" placeholder="First Name"
+                fgroup-class="col-md-4" disable-feedback/>
                 <x-adminlte-input name="other_names" label="Other Names" placeholder="Other Names"
-                fgroup-class="col-md-6" disable-feedback/>
+                fgroup-class="col-md-4" disable-feedback/>
+
         </div>
-        <div class="row">
-            <x-adminlte-input name="marital_status" label="Marital Status" placeholder="Phone Number"
-                fgroup-class="col-md-4" disable-feedback/>
-                <x-adminlte-input name="bvn" label="Bvn Number" placeholder="Bvn Number"
-                fgroup-class="col-md-4" disable-feedback/>
-                <x-adminlte-input name="passport_number" label="Passport Number" placeholder="Passport Number"
-                fgroup-class="col-md-4" disable-feedback/>
-        </div>
+
+
+
         <div class="row">
             <x-adminlte-select name="gender" label="Gender"
             fgroup-class="col-md-4">
                 <x-adminlte-options :options="['Male', 'Female']" disabled="1"
                     empty-option="Select an option..." />
             </x-adminlte-select>
-            <x-adminlte-select name="marital_status" label="Marital Status"
-            fgroup-class="col-md-4">
-                <x-adminlte-options :options="['Married', 'Single']" disabled="1"
-                    empty-option="Select an option..." />
-            </x-adminlte-select>
-            <x-adminlte-input name="passport_number" label="Date of Birth" placeholder="Passport Number"
-            fgroup-class="col-md-4" disable-feedback/>
-
-
+            <x-adminlte-input name="birthday" label="Date of Birth" placeholder="Date of Birth"
+                fgroup-class="col-md-4" disable-feedback/>
+                <x-adminlte-input name="place_of_birth" label="Place Of Birth" placeholder="Other Names"
+                fgroup-class="col-md-4" disable-feedback/>
 
         </div>
+        <div class="row">
+
+            <x-adminlte-input name="phone" label="Phone Number" placeholder="Phone Number"
+                fgroup-class="col-md-4" disable-feedback/>
+                <x-adminlte-input name="place_of_birth" label="Place Of Birth" placeholder="Other Names"
+                fgroup-class="col-md-4" disable-feedback/>
+                <x-adminlte-textarea name="address" label="Address" placeholder="Insert description..."  fgroup-class="col-md-4" disable-feedback/>
+
+        </div>
+        <div class="row">
+
+            <x-adminlte-input name="town" label="Town/Village/ward" placeholder="Town/Village/ward"
+            fgroup-class="col-md-4" disable-feedback/>
+            <x-adminlte-input name="occupation" label="Occupation" placeholder="Occupation"
+            fgroup-class="col-md-4" disable-feedback/>
+            <x-adminlte-input name="height" label="Height in cm" placeholder="Height in cm"
+            fgroup-class="col-md-4" disable-feedback/>
+
+        </div>
+        <div class="row">
+
+            <x-adminlte-input name="next_of_kin" label="Next of Kin" placeholder="Next of Kin"
+            fgroup-class="col-md-4" disable-feedback/>
+            <x-adminlte-select name="marital_status" label="Marital Status"
+            fgroup-class="col-md-4">
+                <x-adminlte-options :options="['Single', 'Married']" disabled="1"
+                    empty-option="Select an option..." />
+            </x-adminlte-select>
+
+        </div>
+
     </form>
 </x-adminlte-card>
 
