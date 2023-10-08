@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Application\StoreBiodataRequest;
 use Illuminate\Http\Request;
 
 class ApplicationController extends Controller
@@ -10,8 +11,9 @@ class ApplicationController extends Controller
     {
         return view('profile');
     }
-    public function storeBiodata(Request $request)
+    public function storeBiodata(StoreBiodataRequest $request)
     {
-        dd($request->all());
+        $data = $request->validated();
+        dd($data);
     }
 }

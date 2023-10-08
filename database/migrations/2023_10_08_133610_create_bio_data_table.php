@@ -29,6 +29,7 @@ return new class extends Migration
             $table->string('occupation');
             $table->string('height');
             $table->string('next_of_kin');
+            $table->string('next_of_kin_phone');
             $table->string('marital_status');
             $table->timestamps();
         });
