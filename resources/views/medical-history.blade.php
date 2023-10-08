@@ -13,7 +13,7 @@
 
 {{-- Themes --}}
 
-<x-adminlte-card title="Personal Profile" theme="lightblue" theme-mode="outline"
+<x-adminlte-card title="Medical History" theme="lightblue" theme-mode="outline"
     icon="fas fa-lg fa-user" header-class="text-uppercase rounded-bottom border-info"
     >
     @include('flash-messages')
