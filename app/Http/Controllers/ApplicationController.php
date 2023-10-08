@@ -10,4 +10,8 @@ class ApplicationController extends Controller
     {
         return view('profile');
     }
+    public function storeBiodata(Request $request)
+    {
+        dd($request->all());
+    }
 }
