@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Bio Data')
+@section('title', 'Medical History')
 
 @section('content_header')
     <h1>Kebbi State Hajj Application</h1>
@@ -14,7 +14,7 @@
 {{-- Themes --}}
 
 <x-adminlte-card title="Medical History" theme="lightblue" theme-mode="outline"
-    icon="fas fa-lg fa-user" header-class="text-uppercase rounded-bottom border-info"
+    icon="fas fa-lg fa-bed" header-class="text-uppercase rounded-bottom border-info"
     >
     @include('flash-messages')
     @if ($errors->any())
