@@ -41,6 +41,6 @@ class ApplicationController extends Controller
             'passport' => $url
 
         ]);
-        return back()->with('success', 'Your Biodata is saved!');
+        return to_route('application.medical')->with('success', 'Your Biodata is saved!');
     }
 }

@@ -38,7 +38,7 @@ Route::middleware('auth')->group(function () {
         Route::post('application/biodata', 'storeBiodata')->name('application-biodata');
     });
     Route::controller(MedicalHistoryController::class)->group(function () {
-        // All VendorProduct routes
         Route::get('application/medical',  'index')->name('application.medical-history');
+        Route::post('application/add/medical', 'store')->name('application.medical');
     });
 });
