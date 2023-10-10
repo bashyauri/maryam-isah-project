@@ -46,4 +46,8 @@ class User extends Authenticatable
     {
         return $this->hasOne(BioData::class);
     }
+    public function medicalHistory()
+    {
+        return $this->hasOne(MedicalHistory::class);
+    }
 }

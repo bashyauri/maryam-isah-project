@@ -3,6 +3,7 @@
 use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MedicalHistoryController;
+use App\Http\Controllers\PaymentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,5 +41,8 @@ Route::middleware('auth')->group(function () {
     Route::controller(MedicalHistoryController::class)->group(function () {
         Route::get('application/medical',  'index')->name('application.medical-history');
         Route::post('application/add/medical', 'store')->name('application.medical');
+    });
+    Route::controller(PaymentController::class)->group(function () {
+        Route::get('application/payment',  'index')->name('application.payment');
     });
 });

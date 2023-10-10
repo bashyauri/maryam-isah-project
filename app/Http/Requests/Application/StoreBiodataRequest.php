@@ -22,7 +22,7 @@ class StoreBiodataRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'passport_number' => ['required'],
+            'passport_number' => ['required', 'unique:bio_data,passport_number'],
             'gender' => ['required'],
             'birthday' => ['required'],
             'lga' => ['required'],
