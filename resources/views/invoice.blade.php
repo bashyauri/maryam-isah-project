@@ -51,12 +51,13 @@
                         <div class="container mt-3">
         <div class='preserveHtml' class='preserveHtml' class="container mt-3">
            <h2 class='preserveHtml' class='preserveHtml' class='preserveHtml'>Invoice Processing</h2>
-           <p class='preserveHtml' class='preserveHtml' class='preserveHtml'>Note: Seat is only reserved after Payment</p>
+           <p class='preserveHtml' class='preserveHtml' class='preserveHtml'>Note:Make sure you print your remita payment slip</p>
            <form onsubmit="makePayment()" id="payment-form">
               <div class='preserveHtml' class='preserveHtml' class="form-floating mb-3 mt-3">
                  <input type="hidden" class="form-control" id="js-firstName" placeholder="Enter RRR" name="rrr" value="{{$RRR}}">
                  <label for="rrr">{{$RRR}}</label>
               </div>
+
               <input type="button" onclick="makePayment()" value="Submit" button class="button"/>
            </form>
         </div>

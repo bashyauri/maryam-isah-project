@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Medical History')
+@section('title', 'Payment')
 
 @section('content_header')
     <h1>Kebbi State Hajj Application</h1>
@@ -14,7 +14,7 @@
 {{-- Themes --}}
 
 <x-adminlte-card title="Payment" theme="lightblue" theme-mode="outline"
-    icon="fas fa-lg fa-bed" header-class="text-uppercase rounded-bottom border-info">
+    icon="fas fa-lg fa-credit-card" header-class="text-uppercase rounded-bottom border-info">
     @include('flash-messages')
     @if ($errors->any())
     <div class="alert alert-danger">
@@ -146,9 +146,6 @@
             @php
                     $full_name = auth()->user()->name;
     list($first_name, $last_name) = explode(" ", $full_name, 2);
-
-    echo "First Name: " . $first_name . "<br>";
-    echo "Last Name: " . $last_name . "<br>";
             @endphp
 
 
@@ -158,7 +155,14 @@
         <input type="hidden" name="description" value="Payment For Hajj">
         <input type="hidden" name="firstName" value={{$first_name}}>
         <input type="hidden" name="lastName" value={{$last_name}}>
+        @if (auth()->user()->payment->status === '00')
+        <a href="" class="btn btn-success">Print Receipt</a>
+
+        @else
         <x-adminlte-button class="btn-flat" type="submit" label="Generate Invoice" theme="success" icon="fas fa-lg fa-save"/>
+        @endif
+
+
 
     </form>
 </x-adminlte-card>
