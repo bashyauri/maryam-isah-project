@@ -25,7 +25,7 @@
         </ul>
     </div>
 @endif
-    <form method="post" action="{{route('application.medical')}}" enctype="multipart/form-data">
+    <form method="post" action="{{route('application.invoice')}}" >
         @csrf
         <div class="row">
 
@@ -33,6 +33,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div id="invoice">
+
                             <div class="toolbar hidden-print">
                                 <div class="text-end">
                                     <button type="button" class="btn btn-dark"><i class="fa fa-print"></i> Print</button>
@@ -136,13 +137,28 @@
                                 <!--DO NOT DELETE THIS div. IT is responsible for showing footer always at the bottom-->
                                 <div></div>
                             </div>
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+            @php
+                    $full_name = auth()->user()->name;
+    list($first_name, $last_name) = explode(" ", $full_name, 2);
 
-        <x-adminlte-button class="btn-flat" type="submit" label="Upload" theme="success" icon="fas fa-lg fa-save"/>
+    echo "First Name: " . $first_name . "<br>";
+    echo "Last Name: " . $last_name . "<br>";
+            @endphp
+
+
+        <input type="hidden" name="amount" value="1200000"/>
+        <input type="hidden" name="email" value={{auth()->user()->email}}>
+        <input type="hidden" name="payerPhone" value={{auth()->user()->biodata->phone}}>
+        <input type="hidden" name="description" value="Payment For Hajj">
+        <input type="hidden" name="firstName" value={{$first_name}}>
+        <input type="hidden" name="lastName" value={{$last_name}}>
+        <x-adminlte-button class="btn-flat" type="submit" label="Generate Invoice" theme="success" icon="fas fa-lg fa-save"/>
 
     </form>
 </x-adminlte-card>
