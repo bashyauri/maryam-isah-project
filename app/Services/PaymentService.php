@@ -61,6 +61,7 @@ class PaymentService
     }
     public function createPayment($data)
     {
+
         $values = $this->generateInvoice($data);
         if (!empty($values)) {
             Payment::create(

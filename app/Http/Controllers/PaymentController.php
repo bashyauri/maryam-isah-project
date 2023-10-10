@@ -15,7 +15,7 @@ class PaymentController extends Controller
     public function index()
     {
         if (!auth()->user()->medicalHistory) {
-            return to_route('application-profile')->with('warning', 'You must Upload your Medical Records First');
+            return to_route('application-medical')->with('warning', 'You must Upload your Medical Records First');
         }
         return view('payment');
     }
@@ -23,6 +23,10 @@ class PaymentController extends Controller
 
     public function generateInvoice(PaymentRequest $request)
     {
+        $response = auth()->user()?->payment;
+        if ($response) {
+            return view('invoice')->with(['success', $response->status, 'RRR' => $response->RRR]);
+        }
 
         $data = $request->validated();
 
@@ -43,10 +47,10 @@ class PaymentController extends Controller
             $this->paymentService->createPayment($data);
 
             // return view('nds.payment')->with($data);
-            return view('invoice')->with(['success_message', $response->status, 'RRR' => $response->RRR]);
+            return view('invoice')->with(['success', $response->status, 'RRR' => $response->RRR]);
         } catch (\Exception $ex) {
             Log::alert($ex->getMessage());
-            return redirect()->back()->withErrors('error', 'Something went wrong:' . $response->status);
+            return redirect()->back()->with('error', 'Something went wrong:' . $response->status);
         }
     }
     public function handleResponse(Request $request)
@@ -75,7 +79,7 @@ class PaymentController extends Controller
             if ($response->status == '00') {
 
                 PaymentService::updateTransactionStatus($response->status, $response->RRR);
-                return  view('invoice')->with(['success_mesaage' => 'Payment Successful']);
+                return  to_route('application.payment')->with(['success_mesaage' => 'Payment Successful']);
             }
 
             PaymentService::updateTransactionStatus($response->status, $response->RRR);
@@ -87,12 +91,16 @@ class PaymentController extends Controller
             return redirect()->back()->withErrors(['error_messsage' => 'Something went wrong:' . $response->message]);
         }
     }
+    public function makePayment()
+    {
+        return view('invoice');
+    }
 
 
     private function generateTransactionId(): string
     {
         $transcId = substr(md5(uniqid(rand(), true)), 0, 4);
         $tran = strtoupper($transcId);
-        return "Ayyah" . $today = date("Ymd") . $tran;
+        return "Hajj" . $today = date("Ymd") . $tran;
     }
 }

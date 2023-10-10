@@ -16,7 +16,6 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(User::class);
             $table->string('transaction_id');
-            $table->string('name');
             $table->integer('amount');
             $table->string('date');
             $table->string('status');
