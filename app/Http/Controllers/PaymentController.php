@@ -102,7 +102,7 @@ class PaymentController extends Controller
 
 
 
-        return $pdf->download('itsolutionstuff.pdf');
+        return $pdf->download('invoice.pdf');
     }
 
 
