@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Application\PaymentRequest;
 use App\Services\PaymentService;
+use PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -91,9 +92,17 @@ class PaymentController extends Controller
             return redirect()->back()->withErrors(['error_messsage' => 'Something went wrong:' . $response->message]);
         }
     }
-    public function makePayment()
+    public function exportReceipt()
     {
-        return view('invoice');
+
+
+
+
+        $pdf = PDF::loadView('payment-pdf');
+
+
+
+        return $pdf->download('itsolutionstuff.pdf');
     }
 
 

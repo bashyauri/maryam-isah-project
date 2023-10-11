@@ -1,31 +1,207 @@
-@extends('adminlte::page')
-
-@section('title', 'Payment')
-
-@section('content_header')
-    <h1>Kebbi State Hajj Application</h1>
-@stop
-
-@section('content')
 
 
 
 
 {{-- Themes --}}
 
-<x-adminlte-card title="Payment" theme="lightblue" theme-mode="outline"
-    icon="fas fa-lg fa-credit-card" header-class="text-uppercase rounded-bottom border-info">
-    @include('flash-messages')
-    @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
-    <form method="post" action="{{route('application.invoice')}}" >
+
+<style>
+    body {
+    margin-top: 20px;
+    background-color: #f7f7ff;
+}
+#invoice {
+    padding: 0px;
+}
+
+.invoice {
+    position: relative;
+    background-color: #fff;
+    min-height: 680px;
+    padding: 15px;
+}
+
+.invoice header {
+    padding: 10px 0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #0d6efd;
+}
+
+.invoice .company-details {
+    text-align: right;
+}
+
+.invoice .company-details .name {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.invoice .contacts {
+    margin-bottom: 20px;
+}
+
+.invoice .invoice-to {
+    text-align: left;
+}
+
+.invoice .invoice-to .to {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.invoice .invoice-details {
+    text-align: right;
+}
+
+.invoice .invoice-details .invoice-id {
+    margin-top: 0;
+    color: #0d6efd;
+}
+
+.invoice main {
+    padding-bottom: 50px;
+}
+
+.invoice main .thanks {
+    margin-top: -100px;
+    font-size: 2em;
+    margin-bottom: 50px;
+}
+
+.invoice main .notices {
+    padding-left: 6px;
+    border-left: 6px solid #0d6efd;
+    background: #e7f2ff;
+    padding: 10px;
+}
+
+.invoice main .notices .notice {
+    font-size: 1.2em;
+}
+
+.invoice table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin-bottom: 20px;
+}
+
+.invoice table td,
+.invoice table th {
+    padding: 15px;
+    background: #eee;
+    border-bottom: 1px solid #fff;
+}
+
+.invoice table th {
+    white-space: nowrap;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.invoice table td h3 {
+    margin: 0;
+    font-weight: 400;
+    color: #0d6efd;
+    font-size: 1.2em;
+}
+
+.invoice table .qty,
+.invoice table .total,
+.invoice table .unit {
+    text-align: right;
+    font-size: 1.2em;
+}
+
+.invoice table .no {
+    color: #fff;
+    font-size: 1.6em;
+    background: #0d6efd;
+}
+
+.invoice table .unit {
+    background: #ddd;
+}
+
+.invoice table .total {
+    background: #0d6efd;
+    color: #fff;
+}
+
+.invoice table tbody tr:last-child td {
+    border: none;
+}
+
+.invoice table tfoot td {
+    background: 0 0;
+    border-bottom: none;
+    white-space: nowrap;
+    text-align: right;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    border-top: 1px solid #aaa;
+}
+
+.invoice table tfoot tr:first-child td {
+    border-top: none;
+}
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 0px solid rgba(0, 0, 0, 0);
+    border-radius: 0.25rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 6px 0 rgb(218 218 253 / 65%),
+        0 2px 6px 0 rgb(206 206 238 / 54%);
+}
+
+.invoice table tfoot tr:last-child td {
+    color: #0d6efd;
+    font-size: 1.4em;
+    border-top: 1px solid #0d6efd;
+}
+
+.invoice table tfoot tr td:first-child {
+    border: none;
+}
+
+.invoice footer {
+    width: 100%;
+    text-align: center;
+    color: #777;
+    border-top: 1px solid #aaa;
+    padding: 8px 0;
+}
+
+@media print {
+    .invoice {
+        font-size: 11px !important;
+        overflow: hidden !important;
+    }
+    .invoice footer {
+        position: absolute;
+        bottom: 10px;
+        page-break-after: always;
+    }
+    .invoice > div:last-child {
+        page-break-before: always;
+    }
+}
+
+.invoice main .notices {
+    padding-left: 6px;
+    border-left: 6px solid #0d6efd;
+    background: #e7f2ff;
+    padding: 10px;
+}
+
+</style>
+<form method="post" action="{{route('application.invoice')}}" >
         @csrf
         <div class="row">
 
@@ -34,22 +210,13 @@
                     <div class="card-body">
                         <div id="invoice">
 
-                            <div class="toolbar hidden-print">
-                                <div class="text-end">
-                                    <button type="button" class="btn btn-dark"><i class="fa fa-print"></i> Print</button>
-                                    <a href="{{route('receipt')}}" class="btn btn-danger"><i class="fa fa-file-pdf-o"></i> Export as PDF</a>
 
-                                </div>
-                                <hr>
-                            </div>
                             <div class="invoice overflow-auto">
                                 <div style="min-width: 600px">
                                     <header>
                                         <div class="row">
                                             <div class="col">
-                                                <a href="javascript:;">
-                                                                <img src="assets/images/logo-icon.png" width="80" alt="">
-                                                            </a>
+
                                             </div>
                                             <div class="col company-details">
                                                 <h2 class="name">
@@ -87,7 +254,7 @@
                                                     <th class="text-left">DESCRIPTION</th>
                                                     <th class="text-right">PRICE</th>
                                                     <th class="text-right">Payment For</th>
-                                                    <th class="text-right">TOTAL</th>
+
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -102,9 +269,9 @@
                                                         <a target="_blank" href="javascript:;">
                                                      for the year  {{date('Y')}}
                                                    </a> Note: This covers all your Expences</td>
-                                                    <td class="unit">N1.2,000000</td>
+                                                    <td class="unit">N1,200000</td>
                                                     <td class="qty">Hajj</td>
-                                                    <td class="total">$0.00</td>
+
                                                 </tr>
 
 
@@ -151,38 +318,8 @@
                 </div>
             </div>
         </div>
-            @php
-                    $full_name = auth()->user()->name;
-    list($first_name, $last_name) = explode(" ", $full_name, 2);
-            @endphp
-
-
-        <input type="hidden" name="amount" value="1200000"/>
-        <input type="hidden" name="email" value={{auth()->user()->email}}>
-        <input type="hidden" name="payerPhone" value={{auth()->user()->biodata->phone}}>
-        <input type="hidden" name="description" value="Payment For Hajj">
-        <input type="hidden" name="firstName" value={{$first_name}}>
-        <input type="hidden" name="lastName" value={{$last_name}}>
-        @if (auth()->user()->payment?->status === '00')
-        <a href="" class="btn btn-success">Print Receipt</a>
-
-        @else
-        <x-adminlte-button class="btn-flat" type="submit" label="Generate Invoice" theme="success" icon="fas fa-lg fa-save"/>
-        @endif
 
 
 
-    </form>
-</x-adminlte-card>
 
 
-
-@stop
-
-@section('css')
-    <link rel="stylesheet" href="/css/payment.css">
-@stop
-
-@section('js')
-    <script> console.log('Hi!'); </script>
-@stop

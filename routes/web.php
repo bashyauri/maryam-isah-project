@@ -45,5 +45,6 @@ Route::middleware('auth')->group(function () {
     Route::controller(PaymentController::class)->group(function () {
         Route::get('application/payment',  'index')->name('application.payment');
         Route::post('application/payment/invoice',  'generateInvoice')->name('application.invoice');
+        Route::get('application/payment/receipt',  'exportReceipt')->name('receipt');
     });
 });
