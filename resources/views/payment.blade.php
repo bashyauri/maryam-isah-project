@@ -91,7 +91,7 @@
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td class="no">04</td>
+                                                    <td class="no">1</td>
                                                     <td class="text-left">
                                                         <h3>
                                                             <a target="_blank" href="javascript:;">
@@ -110,15 +110,22 @@
                                             </tbody>
                                             <tfoot>
                                                 <tr>
+
                                                     <td colspan="2"></td>
-                                                    <td colspan="2">SUBTOTAL</td>
-                                                    <td>$5,200.00</td>
+                                                    <td colspan="2">Payment Status</td>
+                                                    @if (auth()->user()->payment?->status === '00')
+                                                    <td>Paid</td>
+                                                    @else
+                                                    <td>Pending</td>
+                                                    @endif
                                                 </tr>
+                                                @if (auth()->user()->payment?->status === '00')
                                                 <tr>
                                                     <td colspan="2"></td>
-                                                    <td colspan="2">TAX 25%</td>
-                                                    <td>$1,300.00</td>
+                                                    <td colspan="2">Remita Number</td>
+                                                    <td>{{auth()->user()->payment->RRR}}</td>
                                                 </tr>
+                                                @endif
                                                 <tr>
                                                     <td colspan="2"></td>
                                                     <td colspan="2">GRAND TOTAL</td>
@@ -155,7 +162,7 @@
         <input type="hidden" name="description" value="Payment For Hajj">
         <input type="hidden" name="firstName" value={{$first_name}}>
         <input type="hidden" name="lastName" value={{$last_name}}>
-        @if (auth()->user()->payment->status === '00')
+        @if (auth()->user()->payment?->status === '00')
         <a href="" class="btn btn-success">Print Receipt</a>
 
         @else

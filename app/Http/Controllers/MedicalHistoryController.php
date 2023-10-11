@@ -25,10 +25,13 @@ class MedicalHistoryController extends Controller
 
         $data['medical_file']->move(public_path('uploads/medical'), $fileName);
         $url = 'uploads/medical/' . $fileName;
-        MedicalHistory::create([
-            'user_id' => auth()->user()->id,
-            'url' => $url,
-        ]);
+        MedicalHistory::updateOrCreate(
+            ['user_id' => auth()->user()->id],
+            [
+
+                'url' => $url,
+            ]
+        );
         return redirect()->back()->with('success', 'Medical Records Uploaded!');
     }
 }
