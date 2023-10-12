@@ -316,6 +316,11 @@ return [
             'icon' => 'fas fa-fw fa-user',
         ],
         [
+            'text' => 'Help',
+            'url'  => 'application/complain',
+            'icon' => 'fas fa-fw fa-user',
+        ],
+        [
             'text'    => 'Application',
             'icon'    => 'fas fa-fw fa-share',
             'submenu' => [

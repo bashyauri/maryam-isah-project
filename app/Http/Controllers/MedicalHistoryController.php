@@ -32,6 +32,6 @@ class MedicalHistoryController extends Controller
                 'url' => $url,
             ]
         );
-        return redirect()->back()->with('success', 'Medical Records Uploaded!');
+        return to_route('application.payment')->with('success', 'Medical Records Uploaded!');
     }
 }

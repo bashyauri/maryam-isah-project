@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ApplicationController;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\ComplainController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MedicalHistoryController;
 use App\Http\Controllers\PaymentController;
@@ -46,5 +48,9 @@ Route::middleware('auth')->group(function () {
         Route::get('application/payment',  'index')->name('application.payment');
         Route::post('application/payment/invoice',  'generateInvoice')->name('application.invoice');
         Route::get('application/payment/receipt',  'exportReceipt')->name('receipt');
+    });
+    Route::controller(ComplainController::class)->group(function () {
+        Route::get('application/complain',  'index')->name('application.complain');
+        Route::post('application/complain',  'store')->name('application.store.complain');
     });
 });

@@ -10,14 +10,11 @@
     <p>Congratulations for your Interest in Hajj.</p>
 
 
-
+    <h3>Assalamu Alaikum {{auth()->user()->name}}</h3>
 
 {{-- Themes --}}
 
-<x-adminlte-card title="Lightblue Card" theme="lightblue" theme-mode="outline"
-    icon="fas fa-lg fa-envelope" header-class="text-uppercase rounded-bottom border-info">
-    A removable card with outline lightblue theme...
-</x-adminlte-card>
+
 
 
 
