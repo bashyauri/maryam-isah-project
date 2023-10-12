@@ -29,7 +29,7 @@
                             {{-- <div class="brand-logo">
                                 <img src="{{ asset('admin/images/logo.svg') }}" alt="logo">
                             </div> --}}
-                           
+
                             <h6 class="font-weight-light">Sign in to continue.</h6>
                             @if (Session::has('error_message'))
                                 <div class="alert alert-danger alert-dismissible fade show" role="alert">

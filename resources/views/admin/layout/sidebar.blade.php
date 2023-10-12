@@ -15,14 +15,14 @@
             </a>
             <div class="collapse" id="password-basic">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="{{ url('admin/get-admin-password') }}">Update
+                    <li class="nav-item"> <a class="nav-link" href="">Update
                             Password</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="{{ url('admin/get-admin-details') }}">Update
+                    <li class="nav-item"> <a class="nav-link" href="">Update
                             Details</a></li>
                 </ul>
             </div>
         </li>
-        @if (Auth::guard('admin')->user()->roles->contains('name', 'superadmin'))
+
             <li class="nav-item">
                 <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false"
                     aria-controls="ui-basic">
@@ -33,14 +33,11 @@
                 <div class="collapse" id="ui-basic">
                     <ul class="nav flex-column sub-menu">
                         <li class="nav-item"> <a class="nav-link"
-                                href="{{ url('admin/recommended-applicants') }}">Shortlist</a>
+                                href="">Shortlist</a>
                         </li>
-                        <li class="nav-item"> <a class="nav-link" href="{{ url('admin/shortlisted-applicants') }}">Drop
+                        <li class="nav-item"> <a class="nav-link" href="">Drop
                                 Candidate</a></li>
-                        <li class="nav-item"><a class="nav-link"
-                                href="{{ url('admin/shortlisted-applicants') }}">Shortlisted
-                            </a>
-                        </li>
+
                     </ul>
                 </div>
             </li>
@@ -55,21 +52,21 @@
                 <div class="collapse" id="form-elements">
                     <ul class="nav flex-column sub-menu">
                         <li class="nav-item"><a class="nav-link" href="{{ url('admin/dashboard') }}">Not
-                                Recommended
+                                Pay Applicants
                             </a>
                         </li>
                         <li class="nav-item"><a class="nav-link"
-                                href="{{ url('admin/recommended-applicants') }}">Recommended
+                                href="">Recommended
                             </a>
                         </li>
                         <li class="nav-item"><a class="nav-link"
-                                href="{{ url('admin/shortlisted-applicants') }}">Shortlisted
+                                href="">Shortlisted
                             </a>
                         </li>
                     </ul>
                 </div>
             </li>
-        @endif
+
 
         <li class="nav-item">
             <a class="nav-link" href="pages/documentation/documentation.html">

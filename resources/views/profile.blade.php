@@ -68,7 +68,8 @@
                 fgroup-class="col-md-4" value="{{old('place_of_birth',optional($user->biodata)->place_of_birth)}}" disable-feedback/>
 
                 <div class="col-md-4">
-                <textarea id="mytextarea" name="address" label="Address"  class="form-control" placeholder="address" rows="3">
+                <label>Address</label>
+                <textarea id="mytextarea" name="address"   class="form-control" placeholder="address" rows="3">
                     {{ old('address', $user->biodata?->address) }}
                     </textarea>
                 </div>

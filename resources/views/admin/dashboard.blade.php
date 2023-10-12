@@ -17,88 +17,14 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-
-                <div class="col-md-6 grid-margin transparent">
-                    <div class="row">
-                        <div class="col-md-6 mb-4 stretch-card transparent">
-                            <div class="card card-tale">
-                                <div class="card-body">
-                                    <p class="mb-4">Total Applicants</p>
-                                    <p class="fs-30 mb-2">{{ $totalApplicants }}</p>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 mb-4 stretch-card transparent">
-                            <div class="card card-dark-blue">
-                                <div class="card-body">
-                                    <p class="mb-4">Total Applicants Recommended</p>
-                                    <p class="fs-30 mb-2">{{ $recommendedApplicants }}</p>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6 mb-4 mb-lg-0 stretch-card transparent">
-                            <div class="card card-light-blue">
-                                <div class="card-body">
-                                    <p class="mb-4">Applicants not yet recommended</p>
-                                    <p class="fs-30 mb-2">{{ $applicantsNotRecommended }}</p>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 stretch-card transparent">
-                            <div class="card card-light-danger">
-                                <div class="card-body">
-                                    <p class="mb-4">Shortlisted Applicants</p>
-                                    <p class="fs-30 mb-2">{{ $totalShortlisted }}</p>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            @if (count($courses) > 1)
-                <div class="row">
-                    <div class="col-md-8 stretch-card grid-margin">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">Search Course</h4>
-
-                                <form class="form-inline">
-                                    <label class="sr-only" for="inlineFormInputName2">Courses</label>
-                                    <select class="form-control mb-6 mr-sm-4" name="courseId" id="course_id">
-                                        <option value="" selected>Select Courses</option>
-                                        @foreach ($courses as $course)
-                                            <option value="{{ $course->id }}">{{ $course->course_name }}</option>
-                                        @endforeach
-
-                                    </select>
-
-                                    <button type="submit" class="btn btn-primary mb-2 search-course">Search</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>
-
-
-                <div id="result">
 
 
 
 
 
-                </div>
-            @else
+
+
+
                 <div class="row">
                     <div class="col-md-12 grid-margin stretch-card">
                         <div class="card">
@@ -141,96 +67,30 @@
                                             <table class="display expandable-table" style="width:100%">
                                                 <thead>
                                                     <tr>
-                                                        <th>Surname</th>
-                                                        <th>First Name</th>
-                                                        <th>Middle Name</th>
-                                                        <th>Phone number</th>
-                                                        <th>State</th>
+                                                        <th>Name</th>
+                                                        <th>Phone</th>
                                                         <th>LGA</th>
 
-
-                                                        <th></th>
+                                                        <th>Amount</th>
+                                                        <th>LGA</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     @foreach ($applicants as $application)
                                                         <tr>
-                                                            <td>{{ $application->surname }}</td>
-                                                            <td>{{ $application->firstname }}</td>
-                                                            <td>{{ $application->m_name }}</td>
-                                                            <td>{{ $application->p_number }}</td>
-                                                            <td>{{ $application->name }}</td>
-                                                            <td>{{ $application->lga }}</td>
-
-
-                                                            <td><button class="expand-button btn btn-primary">+</button>
-                                                            </td>
-                                                        </tr>
+                                                            <td>{{ $application->biodata->name }}</td>
+                                                            <td>{{ $application->biodata->phone }}</td>
+                                                            <td>{{ $application->biodata->lga }}</td>
+                                                            <td>{{ $application->payment->amount }}</td>
 
 
 
-                                                        <tr class="hidden-row">
-
-                                                            <td colspan="5">
-                                                                <div class="row message-container"></div>
-                                                                <div class="row">
-                                                                    <div class="col mb-4 mb-lg-0 stretch-card transparent">
-                                                                        <div class="card card-light-blue">
-                                                                            <div class="card-body">
-                                                                                <p class="card-title text-white">SSCE
-                                                                                    Details
-                                                                                </p>
-                                                                                @php
-                                                                                    $grades = $application->exam_grades->chunk(2);
-                                                                                @endphp
-                                                                                @foreach ($grades as $gradeRow)
-                                                                                    <div class="row">
-                                                                                        @foreach ($gradeRow as $exam_grade)
-                                                                                            <div class="col-md-6">
-                                                                                                <p class="mb-2">
-                                                                                                    {{ $exam_grade->exam_name . '--->' . $exam_grade->subject_name . ' ' . $exam_grade->grade }}
-                                                                                                </p>
-                                                                                            </div>
-                                                                                        @endforeach
-                                                                                    </div>
-                                                                                @endforeach
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="col mb-4 mb-lg-0">
-                                                                    <p>Select Criteria</p>
-                                                                    <select name="criteria" class="criteria" required>
-                                                                        <option value="">choose</option>
-                                                                        <option value="merit">merit</option>
-                                                                        <option value="elds">elds</option>
-                                                                        <option value="catchment area">catchment area
-                                                                        </option>
-                                                                    </select>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="col mb-4 mb-lg-0">
-                                                                    <p>Comments</p>
-                                                                    <input type="text" name="comments"
-                                                                        class="comments">
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="col mb-4 mb-lg-0">
-                                                                    <p>Recommend</p>
-                                                                    <input type="checkbox" name="recommend"
-                                                                        class="recommend-checkbox"
-                                                                        value="{{ $application->account_id }}">
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="row message-container"></div>
-                                                            </td>
 
                                                         </tr>
+
+
+
+
                                                     @endforeach
                                                 </tbody>
                                             </table>

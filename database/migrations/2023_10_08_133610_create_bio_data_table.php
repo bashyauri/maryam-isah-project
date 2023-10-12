@@ -17,12 +17,12 @@ return new class extends Migration
         Schema::create('bio_data', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(User::class);
-            $table->string('passport_number')->unique();
+            $table->string('passport_number');
             $table->string('passport');
             $table->string('gender');
             $table->date('birthday');
             $table->string('lga');
-            $table->string('phone')->unique();
+            $table->string('phone');
             $table->string('place_of_birth');
             $table->text('address');
             $table->string('town');

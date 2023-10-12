@@ -152,8 +152,11 @@
             </div>
         </div>
             @php
-                    $full_name = auth()->user()->name;
-    list($first_name, $last_name) = explode(" ", $full_name, 2);
+                   $full_name = auth()->user()->name;
+$name_parts = explode(" ", $full_name, 2);
+
+$first_name = $name_parts[0];
+$last_name = isset($name_parts[1]) ? $name_parts[1] : '----';
             @endphp
 
 

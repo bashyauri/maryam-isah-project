@@ -16,7 +16,7 @@ class PaymentController extends Controller
     public function index()
     {
         if (!auth()->user()->medicalHistory) {
-            return to_route('application-medical')->with('warning', 'You must Upload your Medical Records First');
+            return to_route('application.medical-history')->with('warning', 'You must Upload your Medical Records First');
         }
         return view('payment');
     }
