@@ -30,10 +30,23 @@ class HomeController extends Controller
                 ->join('bio_data', 'users.id', 'bio_data.user_id')
                 ->join('medical_histories', 'medical_histories.user_id', 'bio_data.user_id')
                 ->join('payments', 'payments.user_id', 'bio_data.user_id')
-                ->where(['payments.status' => '00'])
                 ->get();
 
             return view('admin.dashboard')->with(['applicants' => $applicants]);
+        }
+        return view('home');
+    }
+    public function getUmrahCandidates()
+    {
+        $role = auth()->user()->role;
+        if ($role === 'admin') {
+            $applicants = DB::table('users')
+                ->join('bio_data', 'users.id', 'bio_data.user_id')
+                ->join('medical_histories', 'medical_histories.user_id', 'bio_data.user_id')
+                ->join('umrah_payments', 'umrah_payments.user_id', 'bio_data.user_id')
+                ->get();
+
+            return view('admin.umrah')->with(['applicants' => $applicants]);
         }
         return view('home');
     }

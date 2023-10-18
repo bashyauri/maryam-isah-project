@@ -18,12 +18,12 @@
                 </a>
                 <div class="collapse" id="form-elements">
                     <ul class="nav flex-column sub-menu">
-                        <li class="nav-item"><a class="nav-link" href="{{ url('admin/dashboard') }}">
+                        <li class="nav-item"><a class="nav-link" href="{{ url('home') }}">
                                 Hajj Applicants
                             </a>
                         </li>
                         <li class="nav-item"><a class="nav-link"
-                                href="">Umrah Applicants
+                                href="{{ url('payment/umrah') }}">Umrah Applicants
                             </a>
                         </li>
                         <li class="nav-item"><a class="nav-link"

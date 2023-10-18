@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\HajjPaymentRequest;
 use App\Services\UmrahPaymentService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class UmrahPaymentController extends Controller
 {
@@ -73,14 +75,14 @@ class UmrahPaymentController extends Controller
     {
         try {
 
-            $response = PaymentService::getTransactionStatus($rrr);
+            $response = UmrahPaymentService::getTransactionStatus($rrr);
             if ($response->status == '00') {
 
-                PaymentService::updateTransactionStatus($response->status, $response->RRR);
+                UmrahPaymentService::updateTransactionStatus($response->status, $response->RRR);
                 return  to_route('application.payment')->with(['success_mesaage' => 'Payment Successful']);
             }
 
-            PaymentService::updateTransactionStatus($response->status, $response->RRR);
+            UmrahPaymentService::updateTransactionStatus($response->status, $response->RRR);
 
             // return view('nds.payment')->with($data);
             return redirect()->back()->with(['success_message' => 'Done']);

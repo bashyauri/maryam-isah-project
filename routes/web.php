@@ -37,6 +37,7 @@ Auth::routes();
 Route::middleware('auth')->group(function () {
     Route::controller(HomeController::class)->group(function () {
         Route::get('/home',  'index')->name('home');
+        Route::get('payment/umrah', 'getUmrahCandidates');
     });
 
     Route::controller(ApplicationController::class)->group(function () {

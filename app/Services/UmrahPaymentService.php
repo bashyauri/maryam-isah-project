@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use App\Models\UmrahPayment;
+
 /**
  * Class UmrahPaymentService.
  */
@@ -62,7 +64,7 @@ class UmrahPaymentService
 
         $values = $this->generateInvoice($data);
         if (!empty($values)) {
-            Payment::create(
+            UmrahPayment::create(
                 [
                     'transaction_id' => $data['transactionId'],
                     'user_id' => auth()->user()->id,
@@ -109,6 +111,6 @@ class UmrahPaymentService
     public static function updateTransactionStatus($status, $rrr)
     {
 
-        Payment::where('RRR', $rrr)->update(['status' => $status]);
+        UmrahPayment::where('RRR', $rrr)->update(['status' => $status]);
     }
 }

@@ -73,7 +73,6 @@
 
                                                         <th>Amount</th>
                                                         <th>Status</th>
-                                                        <th>Payment For</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -83,7 +82,6 @@
                                                             <td>{{ $application->phone }}</td>
                                                             <td>{{ $application->lga }}</td>
                                                             <td>{{ $application->amount }}</td>
-                                                            <td>{{ $application->resource }}</td>
                                                             <td>
                                                                 @if($application->status == '00')
                                                                 Paid
