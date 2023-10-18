@@ -14,10 +14,10 @@ class AdminController extends Controller
 
         $applicants = DB::table('users')
             ->join('bio_data', 'users.id', 'bio_data.user_id')
-            ->join('medical_histories', 'medical_histories.user_id', 'biodata.user_id')
-            ->join('payment', 'payment.user_id', 'biodata.user_id')
-            ->where(['payment.status' => '00'])
+            ->join('medical_histories', 'medical_histories.user_id', 'bio_data.user_id')
+            ->join('payments', 'payments.user_id', 'bio_data.user_id')
+            ->where(['payments.status' => '00'])
             ->get();
-        return view('admin.dashboard')->with(['applicant' => $applicants]);
+        return view('admin.dashboard')->with(['applicants' => $applicants]);
     }
 }

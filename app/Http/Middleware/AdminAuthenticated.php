@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class Admin
+class AdminAuthenticated
 {
     /**
      * Handle an incoming request.
@@ -17,10 +17,18 @@ class Admin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!Auth::guard('admin')->check()) {
-
-            return redirect('/admin/login');
+        if (Auth::guard('admin')->guest()) {
+            if ($request->ajax() || $request->wantsJson()) {
+                return response('Unauthorized.', 401);
+            } else {
+                return redirect(route('admin.login'));
+            }
         }
-        return $next($request);
+
+        $response = $next($request);
+
+        // Set necessary headers if required
+
+        return $response;
     }
 }

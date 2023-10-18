@@ -8,6 +8,8 @@ use App\Services\Admin\LoginService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Exception;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 
@@ -23,17 +25,14 @@ class LoginController extends Controller
         return view('admin.login');
     }
 
-    public function login(LoginRequest $request): RedirectResponse
+    public function login(Request $request)
     {
-        try {
-            if ($this->loginService->login($request->validated())) {
+        $credentials = $request->only('email', 'password');
 
-                return redirect()->intended('/admin/dashboard');
-            }
-            return back()->withErrors(['enrol_message' => 'Invalid credentials']);
-        } catch (Exception $e) {
-            Log::alert($e->getMessage());
-            return redirect()->back()->withErrors(['msgError' => 'Something went wrong']);
+        if (Auth::guard('admin')->attempt($credentials)) {
+            return redirect()->route('admin.dashboard');
         }
+
+        return redirect()->route('admin.login');
     }
 }

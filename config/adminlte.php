@@ -334,8 +334,12 @@ return [
 
                 ],
                 [
-                    'text' => 'Payment',
+                    'text' => ' Hajj Payment',
                     'url'  => 'application/payment',
+                ],
+                [
+                    'text' => 'Umrah Payment',
+                    'url'  => 'application/umrah',
                 ],
             ],
         ],

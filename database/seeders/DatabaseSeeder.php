@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
         // ]);
         Admin::create([
             'name' => 'admin',
-            'email' => 'admin@softui.com',
+            'email' => 'basharu83@gmail.com',
             'password' => Hash::make('password')
         ]);
     }

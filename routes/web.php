@@ -1,8 +1,12 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\LoginController;
+use App\Http\Controllers\Admin\VendorController;
 use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ComplainController;
+use App\Http\Controllers\UmrahPaymentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MedicalHistoryController;
 use App\Http\Controllers\PaymentController;
@@ -53,4 +57,11 @@ Route::middleware('auth')->group(function () {
         Route::get('application/complain',  'index')->name('application.complain');
         Route::post('application/complain',  'store')->name('application.store.complain');
     });
+    Route::controller(UmrahPaymentController::class)->group(function () {
+        Route::get('application/umrah',  'index')->name('application.umrah');
+        Route::post('application/umrah/invoice',  'generateInvoice')->name('umrah.invoice');
+    });
 });
+
+Route::get('/vendor/login', [VendorController::class, 'login'])->name('vendor.login')->middleware(RedirectIfAuthenticated::class);;
+Route::get('admin/logout', [AdminLogoutController::class, 'logout']);

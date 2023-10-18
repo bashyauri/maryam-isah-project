@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -23,6 +24,17 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $role = auth()->user()->role;
+        if ($role === 'admin') {
+            $applicants = DB::table('users')
+                ->join('bio_data', 'users.id', 'bio_data.user_id')
+                ->join('medical_histories', 'medical_histories.user_id', 'bio_data.user_id')
+                ->join('payments', 'payments.user_id', 'bio_data.user_id')
+                ->where(['payments.status' => '00'])
+                ->get();
+
+            return view('admin.dashboard')->with(['applicants' => $applicants]);
+        }
         return view('home');
     }
 }
